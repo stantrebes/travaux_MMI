@@ -1,0 +1,36 @@
+{% extends "base.twig" %}
+
+{% block main %}
+<form action={{info.envoi}} method="post" oninput="resultat.value = level.value" enctype="multipart/form-data">
+  <h3>{{info.tit}}</h3>
+  <p>{{info.phrase}}</p>
+  <div class="contact">
+    <input type="text" id="name" name={{info.nom}} placeholder={{info.nom}} required />
+    <input type="text" id="prenom" name={{info.prenom}} placeholder={{info.prenom}} required />
+    <input type="email" id="mail" name={{info.mail}} placeholder={{info.mail}} required />
+    <input type="tel" id="tel" name={{info.tel}} placeholder={{info.tel}} required />
+    <textarea id="Message" name={{info.mess}} placeholder={{info.mess}}></textarea>
+    <p>{{info.p2}}</p><input type="datetime-local" name="Date" id="Date" />
+    <label for="price">{{info.p3}}</label>
+    <input type="range" name={{info.avis}} id="price" min="0" max="20" step="1" value="10" />
+    <output class="price-output" for="price"></output>
+  </div>
+  <div class="container">
+    <button type="submit">{{info.send}}</button>
+  </div>
+</form>
+
+<script>
+  const price = document.querySelector("#price");
+  const output = document.querySelector(".price-output");
+
+  output.textContent = price.value;
+
+  price.addEventListener("input", function () {
+    output.textContent = price.value;
+  });
+</script>
+{% endblock main %}
+
+{% block aside %}
+{% endblock aside %}

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang={% if info.opp.lang=='fr' %}'en'{% else %}'fr'{% endif %}>
+<!--
+    Ce fichier HTML sert de base à tous les modèles en héritant.
+    Il contient les éléments qui seront présents sur toutes les pages du site.
+    En particulier les entêtes HTML, les header et footer et éventuellement le menu principal
+-->
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ titre }}</title>
+    <link rel="stylesheet" href="css/statique.css">
+    <link rel="stylesheet" href="css/categorie.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+</head>
+
+<body>
+    <header role="banner">
+        <div class="ban_content">
+            <h1>MangaVerse</h1>
+        </div>
+        <nav role="navigation">
+            <ul class="menu">
+                {% for item in menu %}
+                <li><a href="{{ item.url }}">{{ item.label }}</a></li>
+                {% endfor %}
+                <li><a href="{{ info.opp.lien }}" lang="{{info.opp.lang}}">{{ info.opp.nom }}</a></li>
+                <li><a href="#Recherche"><i class="bi-search"></i></a></li>
+                <li><a href="#Panier"><i class="bi bi-cart2"></i></a></li>
+                <li><a href="#MonCompte"><i class="bi bi-person-circle"></i></a></li>
+            </ul>
+        </nav>
+        {% block submenu %}{% endblock %}
+    </header>
+
+    <div class="wrapper">
+        <main role="main">
+            {% block main %}
+            <h2>{{info.tit}}</h2>
+            <p>{{info.phrase}}</p>
+
+            <section class="vedette">
+                <h3>{{info.vedette}}</h3>
+                {% for img in info_vedette %}
+                <img src="{{img}}" alt="img_plus">
+                {% endfor %}
+            </section>
+
+            <section class="arrive">
+                <h3>{{info.arrive}}</h3>
+                <div class="image-container-wrapper">
+                    <div class="image-container">
+                        {% for img in info_sortie %}
+                        <img src="{{ img }}" alt="img_plus">
+                        {% endfor %}
+                    </div>
+                    <button class="prev">&#10094;</button>
+                    <button class="next">&#10095;</button>
+                </div>
+            </section>
+
+            <script>
+                document.addEventListener("DOMContentLoaded", function () {
+                    const imageContainer = document.querySelector('.image-container');
+                    const images = document.querySelectorAll('.image-container img');
+                    const prevBtn = document.querySelector('.prev');
+                    const nextBtn = document.querySelector('.next');
+                    let index = 0;
+
+                    // Fonction pour afficher l'image suivante
+                    function nextImage() {
+                        index++;
+                        if (index >= images.length) {
+                            index = 0;
+                        }
+                        showImage(index);
+                    }
+
+                    // Fonction pour afficher l'image précédente
+                    function prevImage() {
+                        index--;
+                        if (index < 0) {
+                            index = images.length - 1;
+                        }
+                        showImage(index);
+                    }
+
+                    // Fonction pour afficher une image spécifique
+                    function showImage(index) {
+                        images.forEach((image) => {
+                            image.style.display = 'none';
+                        });
+                        images[index].style.display = 'block';
+                    }
+
+                    // Ajoutez des écouteurs d'événements pour les boutons de navigation
+                    prevBtn.addEventListener('click', prevImage);
+                    nextBtn.addEventListener('click', nextImage);
+
+                    // Affichez la première image au chargement de la page
+                    showImage(index);
+                });
+            </script>
+            {% endblock %}
+        </main>
+
+
+
+
+        {% block aside %}
+        <aside>
+            <h4>{{info.asid_titre}}</h4>
+            <ul>
+                {% for item in asid %}
+                <li><a href="{{ item.url }}" target="A">{{ item.label }}</a></li>
+                {% endfor %}
+            </ul>
+        </aside>
+        {% endblock %}
+
+
+    </div>
+
+    <footer role="contentinfo">
+        {% block footer %}
+        <nav>
+            <ul class="menu_foot">
+                {% for item in foot %}
+                <li><a href="{{ item.url }}">{{ item.label }}</a></li>
+                {% endfor %}
+            </ul>
+        </nav>
+        <p>TREBES Stan 2024</p>
+        {% endblock footer %}
+    </footer>
+</body>
+
+</html>

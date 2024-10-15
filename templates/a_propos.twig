@@ -1,0 +1,36 @@
+{% extends "base.twig" %}
+
+{% block main %}
+<div class="propos">
+    <h2>{{info.tit}}</h2>
+
+    <p>{{info.phr1}}</p>
+
+    <p>{{info.phr2}}</p>
+</div>
+<ul>
+    {% for key, items in info.art %}
+    <li>
+        <h3>{{items.titr}}</h3>
+        <p>{{items.p1}}</p>
+        <p>{{items.p2}}</p>
+    </li>
+    {% endfor %}
+    <p>{{info.fin}}</p>
+
+</ul>
+{% endblock main %}
+
+{% block aside %}
+<aside>
+    <h4>Quelque liens externes de documentation</h4>
+
+    <ul>
+
+        {% for item in asid %}
+        <li><a href="{{ item.url }}" target="A">{{ item.label }}</a></li>
+        {% endfor %}
+
+    </ul>
+</aside>
+{% endblock %}

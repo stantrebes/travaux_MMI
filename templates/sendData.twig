@@ -1,0 +1,27 @@
+{% extends "base.twig" %}
+
+{% block main %}
+<div class="contact">
+    <h2>{{info.tit}}</h2>
+    <p>{{info.phrase}}</p>
+    <article class="faq">
+        <h3>{{info.resum}}</h3>
+        <table class="faq-table">
+            <thead>
+                <tr>
+                    <th>{{info.t1}}</th>
+                    <th>{{info.t2}}</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for key, value in res %}
+                <tr>
+                    <td>{{ key }}</td>
+                    <td>{{ value }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </article>
+</div>
+{% endblock main %}

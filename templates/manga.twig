@@ -1,0 +1,81 @@
+{% extends "base.twig" %}
+
+{% block submenu %}
+<ul class="submenu">
+    {% for boucle in livre %}
+    <li><a href="#{{boucle.url_image}}">{{boucle.titre}}</a></li>
+    {% endfor %}
+</ul>
+{% endblock %}
+
+{% block main %}
+<section>
+    {% for boucle in livre %}
+    <div class="manga">
+        {% if loop.index is even %}
+        <article>
+        <h2 id="{{ boucle.url_image }}">{{ boucle.titre }}</h2>
+        <p><span class="bold">{{info.edit}}</span>{{ boucle.editeur }}</p>
+        <p><span class="bold">{{info.aut}}</span>{{ boucle.auteur }}</p>
+        <div class="manga-resume">
+            <div class="manga-image">
+                <img src="{{ boucle.url_image }}" alt="{{ boucle.alt_image }}">
+                <p><span class="bold">{{info.pri}}{{ boucle.prix }} € HT </span></p>
+                <button>{{info.panier}}</button>
+            </div>
+            <p><span class="bold">{{info.resum}}</span>{{ boucle.resume}}</p>
+        </div>
+    </article>
+        {% else %}
+        <article>
+        <h2 id="{{ boucle.url_image }}">{{ boucle.titre }}</h2>
+        <p><span class="bold">{{info.edit}}</span>{{ boucle.editeur }}</p>
+        <p><span class="bold">{{info.aut}}</span>{{ boucle.auteur }}</p>
+        <div class="manga-resume">
+            <p><span class="bold">{{info.resum}}</span>{{ boucle.resume}}</p>
+            <div class="manga-image">
+                <img src="{{ boucle.url_image }}" alt="{{ boucle.alt_image }}">
+                <p><span class="bold">{{info.pri}}{{ boucle.prix }} € HT </span></p>
+                <button>{{info.panier}}</button>
+            </div>
+        </div>
+    </article>
+        {% endif %}
+        <article class="try">
+            <h3>{{info.tab_titre}}</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>{{info.tab_1}}</th>
+                        <th>{{info.tab_2}}</th>
+                        <th>{{info.tab_3}}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for commentaire in boucle.avis %}
+                    <tr>
+                        <td>{{ commentaire.nom_com }}</td>
+                        <td>{{ commentaire.commentaire }}</td>
+                        <td>{{ commentaire.note }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </article>
+    </div>
+    {% endfor %}
+</section>
+{% endblock main %}
+
+
+{% block aside %}
+<aside>
+    <h4>{{info.asid_titre}}</h4>
+    <ul>
+        {% for item in asid %}
+        <li><a href="{{ item.url }}" target="A">{{ item.label }}</a></li>
+        {% endfor %}
+
+    </ul>
+</aside>
+{% endblock %}

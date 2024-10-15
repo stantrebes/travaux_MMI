@@ -1,0 +1,50 @@
+{% extends "base.twig" %}
+
+{% block submenu %}
+<ul class="submenu">
+	{% for boucle in repas %}
+	<li><a href="#{{ boucle.url_image}}">{{boucle.titre}}</a></li>
+	{% endfor %}
+</ul>
+{% endblock %}
+
+{% block main %}
+<section>
+	{% for boucle in repas %}
+	<article>
+	<div class="repas">
+		<h2 id="{{ boucle.url_image}}">{{ boucle.titre }}</h2>
+		<div class="repas-content">
+			<div class="repas-info">
+				<p><span class="bold">{{info.desc}}</span>{{ boucle.description }}</p>
+				<ul>
+					{% for cara in boucle.caracteristiques %}
+					<li>{{ cara }}</li>
+					{% endfor %}
+				</ul>
+				<p><span class="bold">{{info.marq}}</span>{{ boucle.marque }}</p>
+				<p><span class="bold">{{info.quant}}</span>{{ boucle.contenant }}</p>
+			</div>
+			<div class="repas-image">
+				<img src="{{ boucle.url_image }}" alt="{{ boucle.alt_image }}">
+				<p><span class="bold">{{info.pri}}{{ boucle.prix }} €</span></p>
+				<button>{{info.panier}}</button>
+			</div>
+		</div>
+	</div>
+</article>
+	{% endfor %}
+</section>
+{% endblock main %}
+
+{% block aside %}
+<aside>
+	<h4>{{info.asid_titre}}</h4>
+	<ul>
+
+		{% for item in asid %}
+		<li><a href="{{ item.url }}" target="A">{{ item.label }}</a></li>
+		{% endfor %}
+	</ul>
+</aside>
+{% endblock %}

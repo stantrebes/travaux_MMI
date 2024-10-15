@@ -1,0 +1,67 @@
+{% extends "base.twig" %}
+
+{% block submenu %}
+<ul class="submenu">
+    {% for boucle in figurine %}
+    <li><a href="#{{ boucle.url_image}}">{{boucle.titre}}</a></li>
+    {% endfor %}
+</ul>
+{% endblock %}
+
+{% block main %}
+<section>
+    {% for boucle in figurine %}
+    <article>
+    <div class="fig">
+        <h2 id="{{ boucle.url_image }}">{{ boucle.titre }}</h2>
+        <p><span class="bold">{{info.desc}}</span>{{ boucle.description|nl2br }}</p>
+        <div class="fig-info">
+            <div class="fig-details-left">
+                <p><span class="bold">{{info.anim}}</span>{{ boucle.provenance }}</p>
+                <p><span class="bold">{{info.crea}}</span>{{ boucle.createur }}</p>
+            </div>
+            <div class="fig-image">
+                <img src="{{ boucle.url_image }}" alt="{{ boucle.alt_image }}">
+                <p><span class="bold">{{info.pri}}{{ boucle.prix }} € </span></p>
+                <button>{{info.panier}}</button>
+            </div>
+            <div class="fig-details-right">
+                <ul>
+                    {% for cara in boucle.caracteristiques %}
+                    <li><span class="bold">{{ cara }}</span></li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</article>
+</section>
+
+<section class="plus-image">
+    <h3>{{info.plus}}</h3>
+
+    <p>{{info.im}}</p>
+
+    <ul>
+        {% for im in boucle.carrousel %}
+        <li><img src="{{im}}" alt="img_plus"></li>
+        {% endfor %}
+    </ul>
+
+
+{% endfor %}
+</section>
+{% endblock main %}
+
+{% block aside %}
+<aside>
+    <h4>{{info.asid_titre}}</h4>
+    <ul>
+
+        {% for item in asid %}
+        <li><a href="{{ item.url }}" target="A">{{ item.label }}</a></li>
+        {% endfor %}
+
+    </ul>
+</aside>
+{% endblock %}
