@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Super Éco-Héros</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://use.typekit.net/xhx6nbx.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="icon" href="img/favicon.png" type="image/png">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/image-map-resizer/1.0.10/js/imageMapResizer.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>Pourquoi et Comment devenir le super héros de ta maison ?</h1>
+            <div class="dialogue-container">
+
+                <!-- Dialogue de la fille -->
+                <div class="dialogue-item reverse">
+
+                    <div class="character girl">
+                        <img src="img/fille.png" alt="Petite fille">
+                    </div>
+                    <div class="speech-bubble girl-bubble">
+                        <p>Pourquoi faut-il économiser de l'énergie ?</p>
+                    </div>
+                </div>
+
+                <!-- Dialogue du héros -->
+                <div class="dialogue-item responsive">
+                    <div class="character hero">
+                        <img src="img/heros.png" alt="Super héros">
+                    </div> 
+                    <div class="speech-bubble hero-bubble">
+                        <p>Eh bien pour ne pas tout gaspiller ! Imagine que tu as un paquet de bonbons, si tu les manges
+                            tous d'un coup, il n'en restera plus pour demain. L'énergie, c'est pareil ! Si on gaspille, il
+                            n'en restera plus, et tout le monde en a besoin pour vivre !</p>
+                    </div>
+                </div>
+
+
+
+                <!-- Deuxième dialogue du héros -->
+                <div class="dialogue-item">
+                    <div class="character hero">
+                        <img src="img/heros.png" alt="Super héros">
+                    </div>
+                    <div class="speech-bubble hero-bubble-2">
+                        <p>Je vais te montrer comment faire ! Clique sur le symbole de la maison à droite et tu verras ! <a href="#maison"><i class="bi bi-house-fill"></i></a>
+                        </p>
+                    </div>
+                </div>
+            </header>
+                
+        
+
+
+
+
+        <main id="maison">
+            <section class="house-dialogue-container">
+
+            <!-- Dialogue final avec la maison -->
+            <div class="dialogue-item">
+                <div class="character hero">
+                    <img src="img/heros.png" alt="Super héros">
+                </div>
+                <div class="speech-bubble hero-bubble">
+                    <p>Bienvenue dans l'aventure où tu pourras devenir le super-héros de ta maison ! En apprenant à
+                        être plus responsable, tu vas devenir un véritable super-héros de l'écologie.</p>
+                    <p>Prêt à relever le défi ? Clique sur une pièce de la maison.</p>
+                </div>
+        </div>
+                <div class="house">
+                    <img src="maison.png" alt="Maison" usemap="#housemap" class="img-house">
+                    <map name="housemap">
+                            <area id="link-salon" shape="rect" coords="200,200,500,340" alt="Salon" data-room="salon" class="room" data-image="img/accueil_salon.png" href="#">
+                            <area id="link-cuisine" shape="rect" coords="240,340,500,500" alt="Cuisine" data-room="cuisine" class="room" data-image="img/accueil_cuisine.png" href="#">
+                            <area id="link-chambre" shape="rect" coords="90,340,240,500" alt="Chambre" data-room="chambre" class="room" data-image="img/accueil_chambre.png" href="#">
+                            <area id="link-salledebain" shape="rect" coords="90,200,200,340" alt="Salle de Bain" data-room="salle de bain" class="room" data-image="img/accueil_salle de bain.png" href="#">                        
+                    </map>
+                    <div class="room-preview"></div>
+
+                </div>
+            </section>
+        </main>
+ 
+        </div>
+
+            <section class="tips-section">
+                <div id="tips-content">
+                </div>
+            </section>
+    <script src="main.js"></script>
+</body>
+
+</html>
