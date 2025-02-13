@@ -1,4 +1,4 @@
 # travaux_MMI
-Bonjour voici le répertoire des travaux que j'ai réalisés durant mon année de MMI
+Bonjour voici le répertoire des travaux SAE303
 
 J'espère que mes sites vous plairont :)
