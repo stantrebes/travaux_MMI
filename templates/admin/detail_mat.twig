@@ -1,0 +1,33 @@
+{% extends "base.twig" %}
+
+{% block content %}
+    <div class="detail-cours-container">
+        <div class="image-section">
+            <img src="{{ articles.img }}" alt="oui">
+        </div>
+
+        <div class="info-section">
+            <h2>{{ articles.titre }}</h2>
+            <p>{{ articles.detail }}</p> <!-- Ajoutez d'autres détails si nécessaire -->
+       
+       <div class="filter-section">
+        <p>{{articles.filtre}}</p>
+    </div>
+
+        <p>Prix : {{ articles.prix }}</p>
+        <p>Vendeur : {{articles.vendeur}}</p>
+
+        <div class="button-section">
+        <a href="#" class="btn">Réserver</a>
+        <a href="admin_article.php?page={{ page }}&action=edit&id={{ articles.id_bloc }}" class="btn">Modifier</a>        
+        <a href="admin_article.php?page={{ page }}&action=delete&id={{ articles.id_bloc }}" class="btn btn-danger">Supprimer</a> 
+        <a href="admin_article.php?page={{ page }}" class="btn-back">Retour aux catégories</a>
+    </div>
+</div>
+</div>
+
+    
+
+{% endblock %}
+
+       

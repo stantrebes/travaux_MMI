@@ -1,0 +1,37 @@
+{% extends 'base.twig' %}
+
+{% block content %}
+<div class="controle">
+  <a href="#" id="inscription-link"><i class="fas fa-user-plus"></i> Inscription</a>
+  <a href="#" id="connexion-link"><i class="fas fa-sign-in-alt"></i> Connexion</a>
+</div>
+
+<div id="inscription-form">
+  {% include 'inscription.twig' %}
+</div>
+
+<div id="connexion-form" style="display: none;">
+  {% include 'connexion.twig' %}
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const inscriptionLink = document.getElementById('inscription-link');
+  const connexionLink = document.getElementById('connexion-link');
+  const inscriptionForm = document.getElementById('inscription-form');
+  const connexionForm = document.getElementById('connexion-form');
+
+  inscriptionLink.addEventListener('click', function(event) {
+    event.preventDefault();
+    inscriptionForm.style.display = 'block';
+    connexionForm.style.display = 'none';
+  });
+
+  connexionLink.addEventListener('click', function(event) {
+    event.preventDefault();
+    inscriptionForm.style.display = 'none';
+    connexionForm.style.display = 'block';
+  });
+});
+</script>
+{% endblock %}

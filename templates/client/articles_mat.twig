@@ -1,0 +1,38 @@
+{% extends "base.twig" %}
+
+{% block content %}
+    <div class="layout">
+
+    <div class="filters-container">
+        <h3>Filtres</h3>
+        <div class="filters-grid">
+            <label class="filter-checkbox">
+                <input type="checkbox" name="filter" value="electronique" class="filter-input"> Electronique
+            </label>
+            <label class="filter-checkbox">
+                <input type="checkbox" name="filter" value="accessoires" class="filter-input"> Accessoires
+            </label>
+            <label class="filter-checkbox">
+                <input type="checkbox" name="filter" value="equipement" class="filter-input"> Equipement
+            </label>
+            <label class="filter-checkbox">
+                <input type="checkbox" name="filter" value="tissus" class="filter-input"> Tissus
+            </label>
+        </div>
+    </div>
+
+    <div class="articles-grid-mat">
+        {% for article in articles %}
+            <div class="article-card-mat" data-filters="{{ article.filtre }}">
+                <h2>{{ article.titre }}</h2>
+                <img src="{{article.img}}" alt="oui">
+                <p>{{article.prix}}</p>
+                <a href="client_article.php?page={{ page }}&action=read&id={{ article.id_bloc }}" class="btn">Lire plus</a>
+            </div>
+        {% endfor %}
+    </div>
+    </div>
+
+    <a href="client_article.php" class="article-btn-back">Retour aux catégories</a> 
+
+{% endblock %}

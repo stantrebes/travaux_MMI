@@ -1,0 +1,183 @@
+<!DOCTYPE html> 
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Couds & Découds</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+
+</head>
+<body>
+{# Slider avec des images de couture #}
+<header class="header"> 
+    <div class="logo">
+        <img src="img/logo_site.png" alt="Logo Couds & Découds">
+    </div>
+    <nav class="nav">
+        <a href="{{pages}}.php" class="nav-link">Accueil</a>
+        <div class="categories">
+            <div class="">
+                <a href="{{pages}}.php?page=article_cours" class="nav-link">Cours</a>
+            </div>
+            <div class="">
+                <a href="{{pages}}.php?page=article_mat" class="nav-link">Matériel</a>
+            </div>
+            <div class="">
+                <a href="{{pages}}.php?page=article_tuto" class="nav-link">Tutoriels</a>
+            </div>
+        </div>
+        <form id="search-form" class="search-form" action="resultats_recherche.php" method="GET">
+            <input type="text" id="search-input" name="query" placeholder="Rechercher...">
+            <button type="submit"><i class="fas fa-search"></i></button>
+        </form>
+    </nav>
+    {% if pages == "pro_article" %}
+    <div class="auth-button">
+        <a href="compte.php"><i class="fas fa-user"></i></a>
+    </div>
+    {% elseif pages == "admin_article" %}
+    <div class="auth-button">
+        <a href="compte.php"><i class="fas fa-user"></i></a>
+    </div>
+    {% else %}
+    <div class="auth-button">
+        <a href="index.php"><i class="fas fa-user"></i></a>
+    </div>
+    {% endif %}
+    
+    
+
+    </header>
+
+{# Pied de page #}
+
+
+    <!-- Main content -->
+    <main class="content">
+        
+
+        {% block content %}
+
+        <section class="slider">
+            <div class="slider-container">
+                <button class="arrow-left">&lt;</button>
+                <div class="slide">
+                    <img src="img/slide1.jpg" alt="Couture 1">
+                </div>
+                <div class="slide">
+                    <img src="img/slide2.jpg" alt="Couture 2">
+                </div>
+                <div class="slide">
+                    <img src="img/slide3.jpg" alt="Couture 3">
+                </div>
+                <button class="arrow-right">&gt;</button>
+            </div>
+        </section>
+    
+    {# Section Matériels, Cours et Tutos #}
+    <section class="services">
+        <div class="service">
+            <div class="icon">
+                <i class="bi bi-box"></i> <!-- Icône représentant du matériel -->
+            </div>
+            <h3>Matériels</h3>
+            <p>Louez ou achetez du matériel à des particuliers.</p>
+        </div>
+        <div class="service">
+            <div class="icon">
+                <i class="bi bi-book"></i> <!-- Icône représentant des cours -->
+            </div>
+            <h3>Cours</h3>
+            <p>Suivez des cours en ligne ou à domicile proposés par des professionnels.</p>
+        </div>
+        <div class="service">
+            <div class="icon">
+                <i class="bi bi-lightbulb"></i> <!-- Icône représentant des tutos -->
+            </div>
+            <h3>Tutos</h3>
+            <p>Retrouvez des tutos gratuitement écrits par notre équipe et notre communauté.</p>
+        </div>
+    </section>
+    
+    
+    {# Section Populaire #}
+    <section class="populaire">
+        <h2>Les Plus Populaires</h2>
+        <div class="articles">
+            {# Boucle pour les cours #}
+            {% for cours in articles.cours|slice(0, 3) %}
+                <div class="article-card">
+                    <div class="article-image">
+                        <img src="{{ cours.img|default('images/default-course.jpg') }}" alt="{{ cours.titre }}">
+                    </div>
+                    <div class="article-content">
+                        <div class="article-type">Cours</div>
+                        <h3 class="article-title">{{ cours.titre }}</h3>
+                        <a href="{{pages}}.php?page=article_cours&action=read&id={{ cours.id_bloc }}" class="article-link">
+                            Voir plus
+                        </a>                    
+                    </div>
+                </div>
+            {% endfor %}
+    
+            {# Boucle pour les matériaux #}
+            {% for materiel in articles.materiaux|slice(0, 3) %}
+                <div class="article-card">
+                    <div class="article-image">
+                        <img src="{{ materiel.img|default('images/default-material.jpg') }}" alt="{{ materiel.titre }}">
+                    </div>
+                    <div class="article-content">
+                        <div class="article-type">Matériel</div>
+                        <h3 class="article-title">{{ materiel.titre }}</h3>
+                        <a href="{{pages}}.php?page=article_mat&action=read&id={{ materiel.id_bloc }}" class="article-link">
+                            Voir plus
+                        </a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+    
+    {# Section Blog avec des tutos #}
+    <section class="tutorials">
+        <h2>Tutoriels</h2>
+        <div class="tutorials-grid">
+            {# Boucle pour afficher uniquement 2 tutoriels #}
+            {% for tuto in articles.tutoriels|slice(0, 2) %}
+                <div class="tutorial-card">
+                    <div class="tutorial-image">
+                        <img src="{{ tuto.img|default('images/default-tutorial.jpg') }}" alt="{{ tuto.titre }}">
+                    </div>
+                    <div class="tutorial-content">
+                        <h3 class="tutorial-title">{{ tuto.titre }}</h3>
+                        <p>{{tuto.detail}}</p>
+                        <a href="{{ pages }}.php?page=article_tuto&action=read&id={{ tuto.id_bloc }}" class="tutorial-link">
+                            Voir le tutoriel
+                        </a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+    
+{% endblock %}
+    </main>
+
+    <footer>
+        <div class="footer-logo">
+            <img src="img/logo_site.png" alt="Logo Couds & Découds">
+        </div>
+        <div class="footer-links">
+            <a href="contact.php">Contact</a>
+            <a href="mention-legale.php">Mentions légales</a>
+        </div>
+    </footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+{% extends 'base.twig' %}
+
+{% block content %}
+	<h1>Ajouter un article</h1>
+	<form action="admin_article.php?page=article_cours&action=create" method="post" class="form-util">
+        <input type="text" name="titre" placeholder="Saisir un titre">
+        <input type="text" name="img" placeholder="Saisir le lien d'une image">
+        <input type="text" name="detail" placeholder="Saisir le detail">
+        <input type="date" name="dates" placeholder="Saisir la date">
+        <input type="text" name="duree" placeholder="Saisir la durée">
+        <input type="text" name="prix" placeholder="Saisir le prix">
+        <input type="text" name="vendeur" placeholder="Saisir le nom du vendeur">
+        <input type="text" name="filtre" placeholder="Saisir le filtre">
+          <input type="submit" value="Envoyer">
+        </form>
+{% endblock %}

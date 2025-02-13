@@ -1,0 +1,30 @@
+{% extends 'base.twig' %}
+
+{% block content %}
+    <h1>Ajouter un tutoriel</h1>
+    {% if error %}
+        <div class="error-message">{{ error }}</div>
+    {% endif %}
+    <form action="admin_article.php?page=article_tuto&action=create" method="post" class="form-util">
+        <div class="form-group">
+            <input type="text" name="titre" placeholder="Saisir un titre" required>
+        </div>
+        <div class="form-group">
+            <input type="text" name="img" placeholder="Saisir le lien d'une image" required>
+        </div>
+        <div class="form-group">
+            <textarea name="detail" placeholder="Saisir le résumé" required></textarea>
+        </div>
+        <div class="form-group">
+            <textarea name="texte" placeholder="Saisir le contenu du tutoriel" required></textarea>
+        </div>
+        <div class="form-group">
+            <input type="text" name="vendeur" placeholder="Saisir le nom de l'auteur" required>
+        </div>
+        <div class="form-group">
+            <input type="text" name="filtre" placeholder="Saisir la catégorie" required>
+        </div>
+        <button type="submit" class="btn">Créer le tutoriel</button>
+    </form>
+    <a href="admin_article.php?page=article_tuto" class="btn-back">Retour à la liste</a>
+{% endblock %}

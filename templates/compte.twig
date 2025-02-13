@@ -1,0 +1,105 @@
+{% extends 'base.twig' %}
+
+{% block content %}
+<div class="account-container">
+    <h1>Mon Compte</h1>
+    
+    {% if message %}
+        <div class="alert alert-success">{{ message }}</div>
+    {% endif %}
+    
+    {% if error %}
+        <div class="alert alert-error">{{ error }}</div>
+    {% endif %}
+
+    <div class="account-section">
+        <h2>Modifier mon profil</h2>
+        <form method="POST" class="form-util">
+            <input type="hidden" name="action" value="update">
+            
+            <label for="nom">Nom :</label>
+            <input type="text" id="nom" name="nom" value="{{ client.nom }}" required>
+            
+            <label for="prenom">Prénom :</label>
+            <input type="text" id="prenom" name="prenom" value="{{ client.prenom }}" required>
+            
+            <label for="adresse">Adresse :</label>
+            <input type="text" id="adresse" name="adresse" value="{{ client.adresse }}" required>
+            
+            <label for="identifiant">Identifiant :</label>
+            <input type="text" id="identifiant" name="identifiant" value="{{ client.identifiant }}" required>
+            
+            <label for="mdp">Nouveau mot de passe (laisser vide pour ne pas changer) :</label>
+            <input type="password" id="mdp" name="mdp" value="{{ client.mdp }}">
+            
+            <input type="submit" value="Mettre à jour">
+        </form>
+    </div>
+
+    {% if client.rol == 'admin' or client.rol == 'pro' %}
+    <div class="account-section">
+        <h2>Mes Articles</h2>
+        <div class="articles-grid-compte">
+            {% if articles_cours %}
+            <div class="articles-category-compte">
+                <h3>Cours</h3>
+                <div class="articles-list-compte">
+                    {% for article in articles_cours %}
+                    <div class="article-card-compte">
+                        <img src="{{ article.img }}" alt="{{ article.titre }}">
+                        <h4>{{ article.titre }}</h4>
+                        <p>{{ article.prix }}</p>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endif %}
+
+            {% if articles_mat %}
+            <div class="articles-category-compte">
+                <h3>Matériel</h3>
+                <div class="articles-list-compte">
+                    {% for article in articles_mat %}
+                    <div class="article-card-compte">
+                        <img src="{{ article.img }}" alt="{{ article.titre }}">
+                        <h4>{{ article.titre }}</h4>
+                        <p>{{ article.prix }}</p>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endif %}
+
+            {% if articles_tuto %}
+            <div class="articles-category-compte">
+                <h3>Tutoriels</h3>
+                <div class="articles-list-compte">
+                    {% for article in articles_tuto %}
+                    <div class="article-card-compte">
+                        <img src="{{ article.img }}" alt="{{ article.titre }}">
+                        <h4>{{ article.titre }}</h4>
+                        <p>{{ article.prix }}</p>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    {% endif %}
+
+    <div class="account-actions">
+        <a href="logout.php" class="btn-logout">Se déconnecter</a>
+    </div>
+
+    <div class="account-section danger-zone">
+        <h2>Supprimer mon compte</h2>
+        <p class="warning">Attention : cette action est irréversible !</p>
+        <form method="POST" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer votre compte ?');">
+            <input type="hidden" name="action" value="delete">
+            <input type="submit" value="Supprimer mon compte" class="btn-danger">
+        </form>
+    </div>
+</div>
+
+{% endblock %}

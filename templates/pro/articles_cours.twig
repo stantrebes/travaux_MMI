@@ -1,0 +1,41 @@
+{% extends "base.twig" %}
+
+{% block content %}
+    
+    <div class="layout">
+        <!-- Filtres à droite -->
+        <aside class="filters-container">
+            <a href="{{pages}}.php?page=form_article_cours" class="btn">Ajouter un article</a>
+            <h3>Filtres</h3>
+            <div class="filters-grid">
+                <label class="filter-checkbox">
+                    <input type="checkbox" name="filter" value="débutant" class="filter-input"> Débutant
+                </label>
+                <label class="filter-checkbox">
+                    <input type="checkbox" name="filter" value="intermédiaire" class="filter-input"> Intermédiaire
+                </label>
+                <label class="filter-checkbox">
+                    <input type="checkbox" name="filter" value="avancé" class="filter-input"> Avancé
+                </label>
+            </div>
+        </aside>
+
+        <!-- Liste des articles -->
+        <div class="articles-list">
+            {% for article in articles %}
+                <div class="article-card-ligne" data-filters="{{ article.filtre }}">
+                    <img src="{{ article.img }}" alt="{{ article.titre }}" class="article-img">
+                    <div class="article-details">
+                        <h2>{{ article.titre }}</h2>
+                        <p class="article-price">{{ article.prix }}</p>
+                        <p>{{ article.filtre }}</p>
+                        <a href="pro_article.php?page={{ page }}&action=read&id={{ article.id_bloc }}" class="article-btn">Lire plus</a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    
+    <a href="pro_article.php" class="article-btn-back">Retour aux catégories</a>
+
+{% endblock %}

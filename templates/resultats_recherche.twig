@@ -1,0 +1,26 @@
+{% extends 'base.twig' %}
+
+{% block content %}
+<h1>Résultats de recherche pour "{{ query }}"</h1>
+
+<div class="results-container">
+    {% for result in results %}
+        <div class="result-card">
+            <img src="{{ result.img }}" alt="{{ result.titre }}" class="result-img">
+            <div class="result-content">
+                <h3>{{ result.titre }}</h3>
+                {% if result.type == "cours" %}
+                    <a href="{{pages}}.php?page=article_cours&action=read&id={{ result.id }}" class="btn">Voir le cours</a>
+                {% elseif result.type == "mat" %}
+                    <a href="{{pages}}.php?page=article_mat&action=read&id={{ result.id }}" class="btn">Voir le matériel</a>
+                {% elseif result.type == "tuto" %}
+                    <a href="{{pages}}.php?page=article_tuto&action=read&id={{ result.id }}" class="btn">Voir le tutoriel</a>
+                {% endif %}
+            </div>
+        </div>
+    {% else %}
+        <p>Aucun résultat trouvé pour "{{ query }}".</p>
+    {% endfor %}
+</div>
+
+{% endblock %}
